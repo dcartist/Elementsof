@@ -16,6 +16,17 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 def index():
     print(data)
     return render_template('index.html')
+@app.route('/all')
+def programlisting():
+    return render_template('listing.html', data = data)
+
+@app.route('/program/id/<id>', methods=['GET'])
+def programById(id=None):
+    programInfo = list(filter(lambda x: x["id"] == int(id), data)) 
+    print(programInfo[0]["name"])
+    return render_template('program.html', id =id, program=programInfo[0])
+    
+
 @app.route('/api/', methods=['GET'])
 def apiIndex():
     if request.method == 'GET':
