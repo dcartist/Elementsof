@@ -1,0 +1,11 @@
+.detailInfoPanel{
+    padding: 1.5em;
+}
+
+.rowHover :hover {
+background-color: darkcyan;
+}
+
+tr:hover td {
+background-color: darkcyan;
+}

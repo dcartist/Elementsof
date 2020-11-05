@@ -12,8 +12,8 @@
     </thead>
     <tbody>
     {% for i in data %}
-      <tr>
-        <td>{{i.name}}</td>
+      <tr class="rowHover">
+        <td><a href={{ url_for('programById', id=i.id)}}>{{i.name}}</a></td>
         <td>Programming Language</td>
         <td>{{i.id}}</td>
       </tr>

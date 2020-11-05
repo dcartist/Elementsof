@@ -3,16 +3,17 @@
 {{ super() }}
 {% include "listing.html" %}
 
+<p></p>
 {% block details %}
 
-
+<div class="detailInfoPanel">
 {{id}}
+   <h1>{{program.name}}</h1>
+    <p>
+        {{program.summary}}
+    </p>
+</div>
 
-<p>
-    {{program.name}}
-</p>
-<p>
-    {{program.summary}}
-</p>
+
 
 {% endblock %}
