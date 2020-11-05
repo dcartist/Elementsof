@@ -28,7 +28,7 @@ def programById(id=None):
     except:
         programInfo = [{'id': 99999, 'name': 'No Program Language Found', 'summary': 'Sorry the Language you are looking for is not listed. Please, look up another one and try again. Thank you'}]
 
-    return render_template('program.html', id =id, program=programInfo[0])
+    return render_template('program.html', id =id, program=programInfo[0], data = data)
     
 
 @app.route('/api/', methods=['GET'])
