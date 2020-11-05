@@ -22,8 +22,12 @@ def programlisting():
 
 @app.route('/program/id/<id>', methods=['GET'])
 def programById(id=None):
-    programInfo = list(filter(lambda x: x["id"] == int(id), data)) 
-    print(programInfo[0]["name"])
+    try:
+        programInfo = list(filter(lambda x: x["id"] == int(id), data)) 
+        print(programInfo[0]["name"])
+    except:
+        programInfo = [{'id': 99999, 'name': 'No Program Language Found', 'summary': 'Sorry the Language you are looking for is not listed. Please, look up another one and try again. Thank you'}]
+
     return render_template('program.html', id =id, program=programInfo[0])
     
 
