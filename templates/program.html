@@ -1,16 +1,18 @@
-{% extends 'listing.html' %}
+{% extends 'base.html' %}
 
-{{ super() }}
-{% include "listing.html" %}
 
-<p></p>
-{% block details %}
+<div class="filler"></div>
+{% block content %}
 
 <div class="detailInfoPanel">
 {{id}}
    <h1>{{program.name}}</h1>
+   <p>{{program.url}}</p>
     <p>
-        {{program.summary}}
+        {% for text in summary %}
+    <p>{{text}}</p>
+{% endfor %}
+        
     </p>
 </div>
 

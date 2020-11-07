@@ -1,24 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<table class="table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Kind</th>
-        <th>File Size</th>
-      </tr>
-    </thead>
-    <tbody>
+<div class="cardBase">
     {% for i in data %}
-      <tr class="rowHover">
-        <td><a href={{ url_for('programById', id=i.id)}}>{{i.name}}</a></td>
-        <td>Programming Language</td>
-        <td>{{i.id}}</td>
-      </tr>
+    <a href={{ url_for('programById', id=i.id)}}>
+    <div class="cardDesignBase">
+        
+        <div class="cardHeader">#{{i.id}}</div>
+        <div class="cardBody">
+          <!-- <h5 class="card-title">Secondary card title</h5> -->
+          <p>{{i.name}}</p>
+        </div>
+      </div>
+    </a>
       {% endfor %}
-    </tbody>
-  </table>
+    
+
+    </div>
 
 {% endblock %}

@@ -1,11 +1,53 @@
-.detailInfoPanel{
-    padding: 1.5em;
+
+.welcome{
+    background-color: red;
+    display: flex;
 }
 
-.rowHover :hover {
-background-color: darkcyan;
+.cardBase{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 10px;
+    row-gap: 10px;
 }
 
-tr:hover td {
-background-color: darkcyan;
+.cardDesignBase{
+    background-color: grey;
+    box-shadow: 2px 5px 8px #888888;
+    border: 1px black solid;
+    color: black;
+    padding: 15px 0;
+    text-decoration: none;
+    min-height: 150px;
+    opacity: 0.6;
+    transition: 0.5s;
+
 }
+.cardDesignBase:hover{
+    color: white;
+    background-color: red;
+    text-decoration: none;
+    opacity: 1;
+
+}
+
+
+
+.cardHeader{
+    text-align: center;
+    font-size: 2rem;
+
+}
+
+.cardBody{
+    text-align: center;
+    color: black;
+}
+
+.cardBody a{
+    text-decoration: none;
+}
+a:hover, a:visited, a:link, a:active{
+
+    text-decoration: none;
+    }
