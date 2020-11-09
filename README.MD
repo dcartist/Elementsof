@@ -2,13 +2,19 @@
 
 Language, by definition, is the method of human communication, either spoken or written, consisting of words in a structured and conventional way. There is beauty in the fact that humans have more than 600 forms of communicating with machines.  This Flask API captures some of those programming languages and gives you information on them based on Wikipedia data via python. 
 
+`*The dataset is still being working on and adjusted.`
+
 
 
 ### Technologies used:
 
-- Flask API (Python)
+- **Flask API** *(Python)*
 
-- Vercel (deployment)
+- **Wikipedia** *(Python Library)*
+
+- **WPtools** *(Python Library)*
+
+- **Vercel** *(deployment)*
 
   
 
@@ -37,7 +43,6 @@ Language, by definition, is the method of human communication, either spoken or 
 #### Response
 
 ```javascript
-
 {
 	"id": Number,
 	"infobox": { 
@@ -56,5 +61,4 @@ Language, by definition, is the method of human communication, either spoken or 
 	"summary_html": String
 }
 ```
-
 
