@@ -30,7 +30,27 @@ def programById(id=None):
     
     except:
         return render_template('error.html')
-    
+@app.route('/api/name/<name>', methods=['GET'])
+def programByName(name=None):
+    if request.method =='GET':
+        if name:
+            resultsData = []
+            print(name)
+
+            try:
+                # for nameResults in data:
+                #     nameResults["name"] = nameResults["name"].replace("(programming language)", "").lower()
+                #     print (nameResults["name"])
+                #     if name.lower() in nameResults["name"].lower():
+                #         resultsData.append(nameResults)  
+                programInfo = list(filter(lambda x: name.lower() in x["name"].replace("(programming language)", "").lower() , data)) 
+                return (jsonify(programInfo))
+            
+            except:
+                errorMessage = [{'id': 99999, 'name': 'No Program Language Found', 'summary': 'Sorry the Language you are looking for is not listed. Please, look up another one and try again. Thank you'}]
+                print(errorMessage)
+                return(jsonify(errorMessage))
+        
 
 @app.route('/api/', methods=['GET'])
 def apiIndex():
