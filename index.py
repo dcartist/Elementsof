@@ -43,8 +43,13 @@ def programByName(name=None):
                 #     print (nameResults["name"])
                 #     if name.lower() in nameResults["name"].lower():
                 #         resultsData.append(nameResults)  
-                programInfo = list(filter(lambda x: name.lower() in x["name"].replace("(programming language)", "").lower() , data)) 
-                return (jsonify(programInfo))
+                nameResults = list(filter(lambda x: name.lower() in x["name"].replace("(programming language)", "").lower() , data)) 
+                if len(nameResults) == 0:
+                    errorMessage = [{'id': 99999, 'name': 'No Program Language Found', 'summary': 'Sorry the Language you are looking for is not listed. Please, look up another one and try again. Thank you'}]
+                    print(errorMessage)
+                    return(jsonify(errorMessage))
+                else:
+                    return (jsonify(nameResults))
             
             except:
                 errorMessage = [{'id': 99999, 'name': 'No Program Language Found', 'summary': 'Sorry the Language you are looking for is not listed. Please, look up another one and try again. Thank you'}]
