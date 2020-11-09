@@ -6,6 +6,8 @@ import json
 with open('results.json') as programData:
     data = json.load(programData)
 
+errorMessage = [{'id': 99999, 'name': 'No Program Language Found', 'summary': 'Sorry the Language you are looking for is not listed. Please, look up another one and try again. Thank you'}]
+
 app = Flask(__name__)
 cors = CORS(app)
 
@@ -29,39 +31,12 @@ def programById(id=None):
         return render_template('program.html', id =id, program=programInfo[0], data = data, summary = summary)
     
     except:
-        return render_template('error.html')
-@app.route('/api/name/<name>', methods=['GET'])
-def programByName(name=None):
-    if request.method =='GET':
-        if name:
-            resultsData = []
-            print(name)
-
-            try:
-                # for nameResults in data:
-                #     nameResults["name"] = nameResults["name"].replace("(programming language)", "").lower()
-                #     print (nameResults["name"])
-                #     if name.lower() in nameResults["name"].lower():
-                #         resultsData.append(nameResults)  
-                nameResults = list(filter(lambda x: name.lower() in x["name"].replace("(programming language)", "").lower() , data)) 
-                if len(nameResults) == 0:
-                    errorMessage = [{'id': 99999, 'name': 'No Program Language Found', 'summary': 'Sorry the Language you are looking for is not listed. Please, look up another one and try again. Thank you'}]
-                    print(errorMessage)
-                    return(jsonify(errorMessage))
-                else:
-                    return (jsonify(nameResults))
-            
-            except:
-                errorMessage = [{'id': 99999, 'name': 'No Program Language Found', 'summary': 'Sorry the Language you are looking for is not listed. Please, look up another one and try again. Thank you'}]
-                print(errorMessage)
-                return(jsonify(errorMessage))
-        
-
+        return render_template('error.html')        
 @app.route('/api/', methods=['GET'])
 def apiIndex():
     if request.method == 'GET':
         return(jsonify(data))
-
+## Search API by Id
 @app.route('/api/id/<id>', methods=['GET'])
 def apiFindById(id=None):
     try:
@@ -69,14 +44,21 @@ def apiFindById(id=None):
             idInformation = list(filter(lambda x: x["id"] == int(id), data))
             return(jsonify(idInformation))
         else:
-            errorMessage = [{'id': 99999, 'name': 'No Program Language Found', 'summary': 'Sorry the Language you are looking for is not listed. Please, look up another one and try again. Thank you'}]
-            print(errorMessage)
             return(jsonify(errorMessage))
     except:
-        errorMessage = {'id': 99999, 'name': 'No Program Language Found', 'summary': 'Sorry the Language you are looking for is not listed. Please, look up another one and try again. Thank you'}
         return(jsonify(errorMessage))
-        
-
-
+## Search API by snippet of a name       
+@app.route('/api/name/<name>', methods=['GET'])
+def programByName(name=None):
+    if request.method =='GET':
+        if name:
+            try:
+                nameResults = list(filter(lambda x: name.lower() in x["name"].replace("(programming language)", "").lower() , data)) 
+                if len(nameResults) == 0:
+                    return(jsonify(errorMessage))
+                else:
+                    return (jsonify(nameResults))           
+            except:
+                return(jsonify(errorMessage))
 
 app.run(port=3000, debug=True)
