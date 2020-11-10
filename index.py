@@ -53,7 +53,7 @@ def programByName(name=None):
     if request.method =='GET':
         if name:
             try:
-                nameResults = list(filter(lambda x: name.lower() in x["name"].replace("(programming language)", "").lower() , data)) 
+                nameResults = list(filter(lambda x: name.lower() in x["name"].replace("(programming language)", "").replace("programming language", "").replace("language", "").replace("(language)", "").lower() , data)) 
                 if len(nameResults) == 0:
                     return(jsonify(errorMessage))
                 else:
